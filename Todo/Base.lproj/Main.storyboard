@@ -114,8 +114,11 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <datePicker contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" translatesAutoresizingMaskIntoConstraints="NO" id="ueu-i8-oPw">
-                                                <rect key="frame" x="47" y="84" width="320" height="353"/>
+                                                <rect key="frame" x="47" y="84" width="320" height="298"/>
                                             </datePicker>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yvx-60-Seb">
+                                                <rect key="frame" x="182.5" y="406" width="51" height="31"/>
+                                            </switch>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="fui-TQ-VIB" secondAttribute="trailing" constant="10" id="GFA-dD-dYT"/>
@@ -161,6 +164,7 @@
                     <connections>
                         <outlet property="datePicker" destination="ueu-i8-oPw" id="pAf-51-O72"/>
                         <outlet property="descriptionTextField" destination="fui-TQ-VIB" id="VAh-dm-H2H"/>
+                        <outlet property="mySwitch" destination="Yvx-60-Seb" id="5fL-kI-NzK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEJ-W3-f3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

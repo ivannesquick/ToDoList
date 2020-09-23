@@ -15,7 +15,6 @@ class ToDoListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.reuseID)
         tableView.reloadData()
     }
     
@@ -26,12 +25,10 @@ class ToDoListTableViewController: UITableViewController {
 
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return taskList.count
     }
 
@@ -39,8 +36,6 @@ class ToDoListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reuseID, for: indexPath) as! TaskCell
         let taskItem = taskList[indexPath.row]
         cell.setupCell(item: taskItem)
-        // Configure the cell...
-
         return cell
     }
     
@@ -68,23 +63,27 @@ extension ToDoListTableViewController {
 
 extension ToDoListTableViewController {
     func setupNotifications(description: String, date: Date) {
-        let content = UNMutableNotificationContent()
-        content.title = "Notification"
-        content.sound = .default
-        content.body = description
+        let checkSwitch = UserDefaults.standard.bool(forKey: "switchOn")
+        if checkSwitch {
+            let content = UNMutableNotificationContent()
+            content.title = "Notification"
+            content.sound = .default
+            content.body = description
+            
+            let targetDate = date
+            let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                                                                      from: targetDate),
+                                                        repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "some_long_id", content: content, trigger: trigger)
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request, withCompletionHandler: { error in
+                if error != nil {
+                    print("something went wrong")
+                }
+            })
+        }
         
-        let targetDate = date
-        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                                                                  from: targetDate),
-                                                    repeats: false)
-        
-        let request = UNNotificationRequest(identifier: "some_long_id", content: content, trigger: trigger)
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request, withCompletionHandler: { error in
-            if error != nil {
-                print("something went wrong")
-            }
-        })
     }
     
 }
