@@ -17,10 +17,7 @@ class ToDoListTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.reloadData()
     }
-    
-    
-    
-    
+
     // MARK: - Table view data source
 
     
@@ -83,7 +80,6 @@ extension ToDoListTableViewController {
                 }
             })
         }
-        
     }
     
 }
