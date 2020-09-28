@@ -44,7 +44,8 @@ extension ToDoListTableViewController {
         if segue.identifier == "toSelect" {
             if let vc = segue.destination as? AddViewController {
                 vc.title = "New Notification"
-                vc.completion = { description, date in
+                vc.completion = { [weak self] description, date in
+                    guard let self = self else {return}
                     DispatchQueue.main.async {
                         self.navigationController?.popToRootViewController(animated: true)
                         let new = ToDoModel(taskDeskription: description, dateTask: date)
